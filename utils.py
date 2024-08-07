@@ -5,10 +5,11 @@ from deltalake import DeltaTable,write_deltalake
 
 def get_data(url_base,endpoint,params=None,headers=None):
     """
-
+    Pasas la url base y el endpoint para hacer la petición y obtener los datos.
+    Los params y los headers, son opcionales
     Args:
-        url_base (str): _description_
-        endpoint (str): _description_
+        url_base (str): la url de la api
+        endpoint (str): la peticion concreta
         params (dict: Parametros de la peticion. Defaults None.
         headers (dict): Encabezados de la petición. Defaults None.
     """
@@ -29,11 +30,11 @@ def get_data(url_base,endpoint,params=None,headers=None):
 
 def merge_data(df,path,predicate):
     """
-
+    Merge de un dataframe con un delta lake
     Args:
-        df (_type_): _description_
-        path (_type_): _description_
-        predicate (_type_): _description_
+        df (Dataframe): dataframe con los datos actualizados 
+        path (str): ruta del delta lake que se quiere actualizar
+        predicate (str): condicion del join
     """
     df_pa = pa.Table.from_pandas(df)
     actual_data = DeltaTable(path)
