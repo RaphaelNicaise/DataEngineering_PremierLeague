@@ -3,6 +3,7 @@ import pandas as pd
 import pyarrow as pa
 from deltalake import DeltaTable,write_deltalake
 import json
+import shutil
 
 def get_data(url_base,endpoint,params=None,headers=None):
     """
@@ -55,3 +56,24 @@ def get_metadata_from_json(path):
 
     return metadata
 
+def option_to_remove_delta_table(path):
+    """
+        Elimina la tabla delta
+    Args:
+        path (str): path de la tabla delta
+    """
+    print("La carpeta ya existe")
+    while True:
+        dcs = input("Quieres eliminarla? Y/N")
+        if dcs.lower() == "y" or dcs.lower() == "n":
+            break
+        else:
+            print("Opcion invalida")
+            
+    if dcs.lower() == "y":
+        shutil.rmtree(path)
+        # Al borrar la carpeta, se reinicia la fecha de actualizacion, ya que si no hay inconsistencias
+        print("Carpeta eliminada correctamente")
+        
+    else:
+        print("No se elimino la carpeta")
