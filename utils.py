@@ -77,3 +77,25 @@ def option_to_remove_delta_table(path):
         
     else:
         print("No se elimino la carpeta")
+        
+def update_positions(df_positions,team, goals_for, goals_against, points ):
+    """Logica para tabla de posiciones de la liga
+
+    Args:
+        team (_type_): _description_
+        goals_for (_type_): _description_
+        goals_against (_type_): _description_
+        points (_type_): _description_
+    """
+    
+    if team in df_positions["team"].values:
+        df_positions.loc[df_positions["team"] == team, "points"] += points
+        df_positions.loc[df_positions["team"] == team, "goals_for"] += goals_for
+        df_positions.loc[df_positions["team"] == team, "goals_against"] += goals_against
+    else:
+        df_positions.loc[len(df_positions)] = [team, points, goals_for, goals_against, goals_for - goals_against]
+        
+    df_positions.loc[df_positions["team"] == team, "goal_difference"] = (
+        df_positions.loc[df_positions["team"] == team, "goals_for"] - 
+        df_positions.loc[df_positions["team"] == team, "goals_against"]
+    )
