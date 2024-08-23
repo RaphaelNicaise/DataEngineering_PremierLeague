@@ -3,3 +3,4 @@ pandas==2.2.2
 pyarrow==17.0.0
 requests==2.31.0
 great_expectations==0.18.19
+matplotlib==3.9.2
