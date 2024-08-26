@@ -31,7 +31,7 @@ def get_data(url_base,endpoint,params=None,headers=None):
 
 # Funciones para obtener y actualizar la metadata
 
-def update_last_update_in_json(path,new_value):
+def update_last_update_in_json(path:str,new_value:str):
     """
         Actualizar el valor del json, con la fecha del ultimo partido cargado
     Args:
@@ -41,7 +41,7 @@ def update_last_update_in_json(path,new_value):
     with(open(path,'w')) as file:
         json.dump(new_value,file)
 
-def get_metadata_from_json(path):
+def get_metadata_from_json(path:str):
     """
         Obtiene la metadata del json
     Args:
@@ -56,7 +56,7 @@ def get_metadata_from_json(path):
 
     return metadata
 
-def option_to_remove_delta_table(path):
+def option_to_remove_delta_table(path:str):
     """
         Elimina la tabla delta
     Args:
